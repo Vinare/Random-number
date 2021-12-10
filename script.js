@@ -1,5 +1,17 @@
 'use strict'
 
+const checkString = function (str) {
+  let name = prompt(str || `Введи строку!!!`);
+  
+  if (typeof name !== "string" || !isNaN(name))
+  name = checkString(str);
+  return name;
+};
+
+console.log(checkString('Другая строка'));
+
+
+
 let randomNum = Math.floor(Math.random() * 100) + 1
 
 function guessNumber() {
