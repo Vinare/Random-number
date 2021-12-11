@@ -1,41 +1,32 @@
 'use strict'
 
-const checkString = function (str) {
-  let name = prompt(str || `Введи строку!!!`);
-  
-  if (typeof name !== "string" || !isNaN(name))
-  name = checkString(str);
-  return name;
-};
-
-console.log(checkString('Другая строка'));
-
-
-
 let randomNum = Math.floor(Math.random() * 100) + 1
 
 function guessNumber() {
-  let userNum = +prompt('Угадай число от 1 до 100') 
-  if (isNaN(userNum) || userNum === "") {
+  let userNum = prompt('Угадай число от 1 до 100') 
+  
+  if (isNaN(userNum) || userNum == "") {
     alert('Можно вводить только числа')
-  if (userNum > randomNum) {
-    alert('Загаданное число меньше')
-    userNum = guessNumber();
-    
-  } else if (userNum < randomNum) {
-    alert('Загаданное число больше')
-  } else if (userNum === randomNum) {
-    alert('Поздравляю, Вы угадали!!!')
-    return userNum;
-  } else if (userNum === 0) {
-    alert('Нужно угадать число от 1 до 100')
-  } else if (userNum == null) {
+    guessNumber()
+  
+  } if (userNum == null) {
     alert('Игра окончена')
-    return 'Игра окончена';
+  
+  } if (!isNaN(parseFloat(userNum)) && isFinite(userNum)) {
+    userNum = +userNum
+  
+    if (userNum > randomNum) {
+    alert('Загаданное число меньше')
+    guessNumber()  
+  
+  } if (userNum < randomNum) {
+    alert('Загаданное число больше')
+    guessNumber()
+  } 
+   if (userNum === randomNum) {
+    alert('Поздравляю, Вы угадали!!!')
   }
-}
-
-}
+}}
 console.log(guessNumber()) 
 
 
