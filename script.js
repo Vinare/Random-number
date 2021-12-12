@@ -1,10 +1,13 @@
 'use strict'
 
+let attempts = 5;
+
+function guessNumberGlobal() {
 let randomNum = Math.floor(Math.random() * 100) + 1
 
-function guessNumber() {
+function guessNumber(attemptsIndex) {
   let userNum = prompt('Угадай число от 1 до 100') 
-  
+
   if (isNaN(userNum) || userNum == "") {
     alert('Можно вводить только числа')
     guessNumber()
@@ -14,19 +17,41 @@ function guessNumber() {
   
   } if (!isNaN(parseFloat(userNum)) && isFinite(userNum)) {
     userNum = +userNum
+
+    if (attemptsIndex > 1) {
   
     if (userNum > randomNum) {
-    alert('Загаданное число меньше')
-    guessNumber()  
+    attemptsIndex--;
+    alert('Загаданное число меньше. У Вас осталось ' + attemptsIndex + ' попыток')
+    guessNumber(attemptsIndex)  
   
   } if (userNum < randomNum) {
-    alert('Загаданное число больше')
-    guessNumber()
+    attemptsIndex--;
+    alert('Загаданное число больше. У Вас осталось ' + attemptsIndex + ' попыток')
+    guessNumber(attemptsIndex)
   } 
    if (userNum === randomNum) {
-    alert('Поздравляю, Вы угадали!!!')
+    let con = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')
+  
+   if (con == true) { 
+   guessNumberGlobal()
+  } else {
+    alert('Игра окончена')
   }
-}}
-console.log(guessNumber()) 
+  }
+  } if (attemptsIndex == 1) { 
+    let con = confirm('Попытки закончились, хотите сыграть еще?')
+
+    if (con == true) { 
+    guessNumberGlobal() 
+  } else {
+    alert('Игра окончена')
+  }
+  }
+}
+}
+console.log(guessNumber(attempts)) 
+}
+console.log(guessNumberGlobal())
 
 
