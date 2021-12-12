@@ -9,21 +9,21 @@ function guessNumber() {
     alert('Можно вводить только числа')
     guessNumber()
   
-  } if (userNum == null) {
+  } else if (userNum == null) {
     alert('Игра окончена')
   
-  } if (!isNaN(parseFloat(userNum)) && isFinite(userNum)) {
+  } else if (!isNaN(parseFloat(userNum)) && isFinite(userNum)) {
     userNum = +userNum
   
     if (userNum > randomNum) {
     alert('Загаданное число меньше')
     guessNumber()  
   
-  } if (userNum < randomNum) {
+  } else if (userNum < randomNum) {
     alert('Загаданное число больше')
     guessNumber()
-  } 
-   if (userNum === randomNum) {
+  
+  } else if (userNum === randomNum) {
     alert('Поздравляю, Вы угадали!!!')
   }
 }}
