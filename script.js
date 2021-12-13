@@ -1,32 +1,37 @@
-'use strict'
+'use strict';
 
-let randomNum = Math.floor(Math.random() * 100) + 1
+function game() {
+  const randomNum = Math.floor(Math.random() * 100) + 1;
+  
+  return function guessNumber() {
+  let userNum = prompt('Угадай число от 1 до 100'); 
+  
+    if (userNum === null) {
+      alert('Игра окончена');
+      return 'Игра окончена';
+    }
 
-function guessNumber() {
-  let userNum = prompt('Угадай число от 1 до 100') 
+    if (+userNum === randomNum) {
+      alert('Поздравляю, Вы угадали!!!');
+      return userNum;
+    }
   
-  if (isNaN(userNum) || userNum == "") {
-    alert('Можно вводить только числа')
-    guessNumber()
-  
-  } else if (userNum == null) {
-    alert('Игра окончена')
-  
-  } else if (!isNaN(parseFloat(userNum)) && isFinite(userNum)) {
-    userNum = +userNum
-  
-    if (userNum > randomNum) {
-    alert('Загаданное число меньше')
-    guessNumber()  
-  
-  } else if (userNum < randomNum) {
-    alert('Загаданное число больше')
-    guessNumber()
-  
-  } else if (userNum === randomNum) {
-    alert('Поздравляю, Вы угадали!!!')
-  }
-}}
-console.log(guessNumber()) 
+    switch (true) {
+    case !userNum.trim() || isNaN(userNum):
+      alert('Можно вводить только числа'); break;
+    case +userNum > randomNum:
+      alert('Загаданное число меньше'); break;
+    case +userNum < randomNum:
+      alert('Загаданное число больше'); break;
+    }
+    
+    userNum = guessNumber();
+    return userNum;
+  };
+}
+
+const play = game();
+
+console.log(play());
 
 
