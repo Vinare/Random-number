@@ -1,57 +1,60 @@
-'use strict'
+'use strict';
 
-let attempts = 10;
+const attempts = 10;
 
-function guessNumberGlobal() {
-let randomNum = Math.floor(Math.random() * 100) + 1
+function guessNumberGlobal(attemptsIndex) {
+let randomNum;
+const attempts = 10;
+  function newRound() {
+   randomNum = Math.floor(Math.random() * 100) + 1;
+   attemptsIndex = attempts;
+   return guessNumber();
+  }
 
-  function guessNumber(attemptsIndex) {
-    let userNum = prompt('Угадай число от 1 до 100') 
-
-    if (isNaN(userNum) || userNum == "") {
-      alert('Можно вводить только числа')
-      guessNumber()
+  function guessNumber() {
+    let userNum = prompt('Угадай число от 1 до 100'); 
     
-    } else if (userNum == null) {
-      alert('Игра окончена')
+    if (userNum === null) {
+      alert('Игра окончена');
+      return 'Игра окончена';
+    } 
     
-    } else if (!isNaN(parseFloat(userNum)) && isFinite(userNum)) {
-      userNum = +userNum
-
-      if (attemptsIndex > 1) {
-    
-      if (userNum > randomNum) {
-      attemptsIndex--;
-      alert('Загаданное число меньше. У Вас осталось ' + attemptsIndex + ' попыток')
-      guessNumber(attemptsIndex)  
-    
-    } else if (userNum < randomNum) {
-      attemptsIndex--;
-      alert('Загаданное число больше. У Вас осталось ' + attemptsIndex + ' попыток')
-      guessNumber(attemptsIndex)
-    
-    } else if (userNum === randomNum) {
-      let con = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?')
-    
-    if (con == true) { 
-    guessNumberGlobal()
-    } else {
-      alert('Игра окончена')
+    if (+userNum === randomNum) {
+      let con = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
+      con === true ? newRound() : alert('Игра окончена'); 
+      return userNum;
     }
-    }
+
+    if (attemptsIndex > 1) {
+    
+    switch (true) {
+    case !userNum.trim() || isNaN(userNum):
+      alert('Можно вводить только числа'); break;
+    case +userNum > randomNum :
+      attemptsIndex--;
+      alert('Загаданное число меньше. У Вас осталось ' + attemptsIndex + ' попыток'); break; 
+    case +userNum < randomNum :
+      attemptsIndex--;
+      alert('Загаданное число больше. У Вас осталось ' + attemptsIndex + ' попыток'); break;
+    } 
     } else { 
-      let con = confirm('Попытки закончились, хотите сыграть еще?')
+    let con = confirm('Попытки закончились, хотите сыграть еще?');
 
-      if (con == true) { 
-      guessNumberGlobal() 
-    } else {
-      alert('Игра окончена')
+    con === true ? newRound() : alert('Игра окончена');
+    return userNum;
     }
-    }
+
+    userNum = guessNumber();
+    return userNum;
   }
-  }
-console.log(guessNumber(attempts)) 
-}
-console.log(guessNumberGlobal())
+  const round = newRound();
+  return round;
+  
+} 
+
+const play = guessNumberGlobal(attempts);
+
+console.log(play()); 
+
 
 
