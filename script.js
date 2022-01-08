@@ -3,7 +3,7 @@
 function game() {
   const randomNum = Math.floor(Math.random() * 100) + 1;
   
-  return function guessNumber() {
+  function guessNumber() {
   let userNum = prompt('Угадай число от 1 до 100'); 
   
     if (userNum === null) {
@@ -27,7 +27,9 @@ function game() {
     
     userNum = guessNumber();
     return userNum;
-  };
+  }
+  
+  return guessNumber;
 }
 
 const play = game();
