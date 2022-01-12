@@ -1,9 +1,8 @@
 'use strict';
 
-function guessNumberGlobal() {
+function guessNumberGlobal(attemptsIndex) {
 let randomNum;
-const attempts = 10;
-let attemptsIndex = attempts;
+const attempts = attemptsIndex;
     
     function newRound() {
     randomNum = Math.floor(Math.random() * 100) + 1;
@@ -50,7 +49,7 @@ let attemptsIndex = attempts;
     return newRound;
 }   
 
-const play = guessNumberGlobal();
+const play = guessNumberGlobal(10);
 
 console.log(play()); 
 
