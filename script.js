@@ -44,6 +44,7 @@ const attempts = attemptsIndex;
         }
 
       userNum = guessNumber();
+      
       return userNum;
     }
     return newRound;
