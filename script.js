@@ -19,8 +19,8 @@ const attempts = attemptsIndex;
       } 
       
       if (+userNum === randomNum) {
-        let con = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
-        con === true ? newRound() : alert('Игра окончена'); 
+        confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?') ? 
+        userNum = newRound() : alert('Игра окончена'); 
         return userNum;
       }
 
@@ -35,13 +35,12 @@ const attempts = attemptsIndex;
         case +userNum < randomNum :
           attemptsIndex--;
           alert('Загаданное число больше. У Вас осталось ' + attemptsIndex + ' попыток'); break;
-      } 
+        } 
       } else { 
-        let con = confirm('Попытки закончились, хотите сыграть еще?');
-
-        con === true ? newRound() : alert('Игра окончена');
+        confirm('Попытки закончились, хотите сыграть еще?') ? 
+        userNum = newRound() : alert('Игра окончена');
         return userNum;
-        }
+      }
 
       userNum = guessNumber();
       
